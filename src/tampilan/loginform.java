@@ -17,17 +17,23 @@ boolean isPasswordVisible = false;
     /**
      * Creates new form loginform
      */
-    public loginform() {
+public loginform() {
     initComponents();
     setLocationRelativeTo(null);
-    jLabelShow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+    // 👉 cursor jadi tangan saat hover tombol
+    jButton1.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
+
+    // 👉 cursor tangan untuk icon show password juga (opsional, biar keren)
+    jLabelShow.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
+
     jPasswordField1.setEchoChar('•');
     jLabelShow.setOpaque(false);
-    
-    
-ImageIcon icon = new ImageIcon(getClass().getResource("/image/eye.png"));
-Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-jLabelShow.setIcon(new ImageIcon(img));
+
+    // icon eye
+    ImageIcon icon = new ImageIcon(getClass().getResource("/image/eye.png"));
+    Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+    jLabelShow.setIcon(new ImageIcon(img));
 
     // placeholder username
     jTextField1.setText("Username");
@@ -40,13 +46,24 @@ jLabelShow.setIcon(new ImageIcon(img));
 
     jButton1.setEnabled(false);
 
-    // 🔥 load data "ingat saya"
+    // load data "ingat saya"
     String savedUser = prefs.get("username", null);
     if (savedUser != null) {
         jTextField1.setText(savedUser);
         jTextField1.setForeground(java.awt.Color.BLACK);
         jCheckBox1.setSelected(true);
     }
+
+    // 🔥 BONUS: efek hover tombol (biar lebih hidup)
+    jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            jButton1.setBackground(new java.awt.Color(30, 80, 180));
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            jButton1.setBackground(new java.awt.Color(25, 61, 142));
+        }
+    });
 }
 private void cekInput() {
     String user = jTextField1.getText();
@@ -118,7 +135,7 @@ private void cekInput() {
         jLabel2.setText("Sistem Informasi Akademik Sekolah");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tampilan/departemen-pendidikan-nasional-seeklogo.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/departemen-pendidikan-nasional-seeklogo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,7 +171,7 @@ private void cekInput() {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tampilan/icon png/icons8-waving-hand-emoji-30.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-waving-hand-emoji-30.png"))); // NOI18N
         jLabel4.setText("Selamat Datang");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
@@ -207,7 +224,7 @@ private void cekInput() {
         jButton1.setBackground(new java.awt.Color(25, 61, 142));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tampilan/icon png/icons8-login-20.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-login-20.png"))); // NOI18N
         jButton1.setText("Masuk ke Dashboard");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,12 +233,11 @@ private void cekInput() {
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("© 2026 SMP Negeri 0 - AllRight Reserved");
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tampilan/icon png/icons8-username-17.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-username-17.png"))); // NOI18N
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tampilan/icon png/icons8-password-17 (1).png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-password-17 (1).png"))); // NOI18N
 
         jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -238,7 +254,7 @@ private void cekInput() {
         });
 
         jLabelShow.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelShow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tampilan/icon png/eye.png"))); // NOI18N
+        jLabelShow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye.png"))); // NOI18N
         jLabelShow.setPreferredSize(new java.awt.Dimension(16, 16));
         jLabelShow.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -251,38 +267,39 @@ private void cekInput() {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 101, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
-                .addGap(74, 74, 74))
+                .addGap(85, 85, 85))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabel4)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jTextField1)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jCheckBox1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel7))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jPasswordField1))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelShow, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField1)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jCheckBox1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jPasswordField1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelShow, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,15 +312,17 @@ private void cekInput() {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelShow, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelShow, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 21, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(jCheckBox1))
@@ -317,7 +336,7 @@ private void cekInput() {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 390, 330));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tampilan/icon png/Gemini_Generated_Image_qah99oqah99oqah9 (1) (1).png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Gemini_Generated_Image_qah99oqah99oqah9 (1) (1).png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, -1, 570));
 
         pack();
@@ -329,18 +348,8 @@ private void cekInput() {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-      jButton1.setEnabled(false);
-    jButton1.setText("Loading...");
-
-    new Thread(() -> {
-        try {
-            Thread.sleep(1500);
-        } catch (Exception e) {}
-
-        java.awt.EventQueue.invokeLater(() -> {
-            prosesLogin();
-        });
-    }).start();
+      // ubah cursor jadi loading
+    prosesLogin();
     }//GEN-LAST:event_jButton1ActionPerformed
 private void prosesLogin() {
     String username = jTextField1.getText();
@@ -416,26 +425,26 @@ private void prosesLogin() {
 
     private void jLabelShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelShowMouseClicked
         // TODO add your handling code here:
-  if (isPasswordVisible) {
+        if (isPasswordVisible) {
 
-        jPasswordField1.setEchoChar('•');
+            jPasswordField1.setEchoChar('•');
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/image/eye.png"));
-        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        jLabelShow.setIcon(new ImageIcon(img));
+            ImageIcon icon = new ImageIcon(getClass().getResource("/image/eye.png"));
+            Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            jLabelShow.setIcon(new ImageIcon(img));
 
-        isPasswordVisible = false;
+            isPasswordVisible = false;
 
-    } else {
+        } else {
 
-        jPasswordField1.setEchoChar((char) 0);
+            jPasswordField1.setEchoChar((char) 0);
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/image/eye-off.png"));
-        Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        jLabelShow.setIcon(new ImageIcon(img));
+            ImageIcon icon = new ImageIcon(getClass().getResource("/image/eye-off.png"));
+            Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            jLabelShow.setIcon(new ImageIcon(img));
 
-        isPasswordVisible = true;
-    }
+            isPasswordVisible = true;
+        }
     }//GEN-LAST:event_jLabelShowMouseClicked
 
     /**
