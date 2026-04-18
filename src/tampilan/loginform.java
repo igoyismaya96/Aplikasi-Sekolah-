@@ -7,6 +7,8 @@ package tampilan;
 import java.util.prefs.Preferences;
 import javax.swing.ImageIcon;
 import java.awt.Image;
+import Dashboard_Admin.Dashboard;
+import Dashboard_Guru.form_absen;
 /**
  *
  * @author User
@@ -27,7 +29,7 @@ public loginform() {
     // 👉 cursor tangan untuk icon show password juga (opsional, biar keren)
     jLabelShow.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
 
-    jPasswordField1.setEchoChar('•');
+    txtPassword.setEchoChar('•');
     jLabelShow.setOpaque(false);
 
     // icon eye
@@ -36,21 +38,21 @@ public loginform() {
     jLabelShow.setIcon(new ImageIcon(img));
 
     // placeholder username
-    jTextField1.setText("Username");
-    jTextField1.setForeground(new java.awt.Color(150,150,150));
+    txtusername.setText("Username");
+    txtusername.setForeground(new java.awt.Color(150,150,150));
 
     // placeholder password
-    jPasswordField1.setText("Password");
-    jPasswordField1.setEchoChar((char) 0);
-    jPasswordField1.setForeground(new java.awt.Color(150,150,150));
+    txtPassword.setText("Password");
+    txtPassword.setEchoChar((char) 0);
+    txtPassword.setForeground(new java.awt.Color(150,150,150));
 
     jButton1.setEnabled(false);
 
     // load data "ingat saya"
     String savedUser = prefs.get("username", null);
     if (savedUser != null) {
-        jTextField1.setText(savedUser);
-        jTextField1.setForeground(java.awt.Color.BLACK);
+        txtusername.setText(savedUser);
+        txtusername.setForeground(java.awt.Color.BLACK);
         jCheckBox1.setSelected(true);
     }
 
@@ -66,8 +68,8 @@ public loginform() {
     });
 }
 private void cekInput() {
-    String user = jTextField1.getText();
-    String pass = new String(jPasswordField1.getPassword());
+    String user = txtusername.getText();
+    String pass = new String(txtPassword.getPassword());
 
     if (user.equals("Username") || pass.equals("Password") ||
         user.isEmpty() || pass.isEmpty()) {
@@ -95,13 +97,13 @@ private void cekInput() {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtusername = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jLabelShow = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -183,27 +185,27 @@ private void cekInput() {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel6.setText("Password");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText(" username");
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtusername.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtusername.setForeground(new java.awt.Color(204, 204, 204));
+        txtusername.setText(" username");
+        txtusername.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        txtusername.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtusername.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
+                txtusernameFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField1FocusLost(evt);
+                txtusernameFocusLost(evt);
             }
         });
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtusername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtusernameActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtusername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                txtusernameKeyReleased(evt);
             }
         });
 
@@ -234,17 +236,17 @@ private void cekInput() {
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-password-17 (1).png"))); // NOI18N
 
-        jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jPasswordField1FocusGained(evt);
+                txtPasswordFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jPasswordField1FocusLost(evt);
+                txtPasswordFocusLost(evt);
             }
         });
-        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jPasswordField1KeyReleased(evt);
+                txtPasswordKeyReleased(evt);
             }
         });
 
@@ -274,7 +276,7 @@ private void cekInput() {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
@@ -285,7 +287,7 @@ private void cekInput() {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jCheckBox1)
                                             .addComponent(jLabel6)
-                                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelShow, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -304,7 +306,7 @@ private void cekInput() {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addComponent(jLabel6)
@@ -312,7 +314,7 @@ private void cekInput() {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelShow, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -333,18 +335,44 @@ private void cekInput() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtusernameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-      // ubah cursor jadi loading
-    prosesLogin();
+        // TODO add your handling code here:                                                                                 
+
+    String username = txtusername.getText();
+    String password = new String(txtPassword.getPassword());
+
+    if (username.equals("admin") && password.equals("123")) {
+
+        // 🔥 Ingat saya
+        if (jCheckBox1.isSelected()) {
+            prefs.put("username", username);
+        } else {
+            prefs.remove("username");
+        }
+
+        // 🔥 Buka Dashboard + kirim username
+        new Dashboard(username).setVisible(true);
+
+        // Tutup login
+        this.dispose();
+
+    } else if (username.equals("guru") && password.equals("123")) {
+
+        new form_absen().setVisible(true);
+        this.dispose();
+
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Login gagal!");
+    }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 private void prosesLogin() {
-    String username = jTextField1.getText();
-    String password = new String(jPasswordField1.getPassword());
+    String username = txtusername.getText();
+    String password = new String(txtPassword.getPassword());
 
     if (username.equals("admin") && password.equals("123")) {
 
@@ -366,59 +394,59 @@ private void prosesLogin() {
         jButton1.setText("Masuk ke Dashboard");
     }
 }
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    private void txtusernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusernameKeyReleased
         // TODO add your handling code here:
         cekInput();
-    }//GEN-LAST:event_jTextField1KeyReleased
+    }//GEN-LAST:event_txtusernameKeyReleased
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jPasswordField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyReleased
+    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
         // TODO add your handling code here:
         cekInput();
-    }//GEN-LAST:event_jPasswordField1KeyReleased
+    }//GEN-LAST:event_txtPasswordKeyReleased
 
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+    private void txtusernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtusernameFocusGained
         // TODO add your handling code here:
-        if (jTextField1.getText().equals("Username")) {
-        jTextField1.setText("");
-        jTextField1.setForeground(java.awt.Color.BLACK);
+        if (txtusername.getText().equals("Username")) {
+        txtusername.setText("");
+        txtusername.setForeground(java.awt.Color.BLACK);
     }
-    }//GEN-LAST:event_jTextField1FocusGained
+    }//GEN-LAST:event_txtusernameFocusGained
 
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+    private void txtusernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtusernameFocusLost
         // TODO add your handling code here:
-        if (jTextField1.getText().isEmpty()) {
-        jTextField1.setText("Username");
-        jTextField1.setForeground(new java.awt.Color(150,150,150));
+        if (txtusername.getText().isEmpty()) {
+        txtusername.setText("Username");
+        txtusername.setForeground(new java.awt.Color(150,150,150));
     }
-    }//GEN-LAST:event_jTextField1FocusLost
+    }//GEN-LAST:event_txtusernameFocusLost
 
-    private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
+    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
         // TODO add your handling code here:
-        if (String.valueOf(jPasswordField1.getPassword()).equals("Password")) {
-        jPasswordField1.setText("");
-        jPasswordField1.setEchoChar('•');
-        jPasswordField1.setForeground(java.awt.Color.BLACK);
+        if (String.valueOf(txtPassword.getPassword()).equals("Password")) {
+        txtPassword.setText("");
+        txtPassword.setEchoChar('•');
+        txtPassword.setForeground(java.awt.Color.BLACK);
     }
-    }//GEN-LAST:event_jPasswordField1FocusGained
+    }//GEN-LAST:event_txtPasswordFocusGained
 
-    private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
+    private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
         // TODO add your handling code here:
-        if (String.valueOf(jPasswordField1.getPassword()).isEmpty()) {
-        jPasswordField1.setText("Password");
-        jPasswordField1.setEchoChar((char) 0);
-        jPasswordField1.setForeground(new java.awt.Color(150,150,150));
+        if (String.valueOf(txtPassword.getPassword()).isEmpty()) {
+        txtPassword.setText("Password");
+        txtPassword.setEchoChar((char) 0);
+        txtPassword.setForeground(new java.awt.Color(150,150,150));
     }
-    }//GEN-LAST:event_jPasswordField1FocusLost
+    }//GEN-LAST:event_txtPasswordFocusLost
 
     private void jLabelShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelShowMouseClicked
         // TODO add your handling code here:
         if (isPasswordVisible) {
 
-            jPasswordField1.setEchoChar('•');
+            txtPassword.setEchoChar('•');
 
             ImageIcon icon = new ImageIcon(getClass().getResource("/image/eye.png"));
             Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
@@ -428,7 +456,7 @@ private void prosesLogin() {
 
         } else {
 
-            jPasswordField1.setEchoChar((char) 0);
+            txtPassword.setEchoChar((char) 0);
 
             ImageIcon icon = new ImageIcon(getClass().getResource("/image/eye-off.png"));
             Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
@@ -490,7 +518,7 @@ private void prosesLogin() {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables
 }
