@@ -147,6 +147,7 @@ dLogout.setIconTextGap(0);
         dAbsensi = new javax.swing.JButton();
         dNilaiUjian = new javax.swing.JButton();
         dLogout = new javax.swing.JButton();
+        dNilaiUjian1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
@@ -280,7 +281,7 @@ dLogout.setIconTextGap(0);
         dNilaiUjian.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         dNilaiUjian.setForeground(new java.awt.Color(255, 255, 255));
         dNilaiUjian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-exam-20.png"))); // NOI18N
-        dNilaiUjian.setText("Nilai Ujian");
+        dNilaiUjian.setText("Nilai Ujian & Raport");
         dNilaiUjian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dNilaiUjianActionPerformed(evt);
@@ -298,6 +299,17 @@ dLogout.setIconTextGap(0);
             }
         });
 
+        dNilaiUjian1.setBackground(new java.awt.Color(25, 61, 142));
+        dNilaiUjian1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        dNilaiUjian1.setForeground(new java.awt.Color(255, 255, 255));
+        dNilaiUjian1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-report-20.png"))); // NOI18N
+        dNilaiUjian1.setText("Nilai Siswa");
+        dNilaiUjian1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dNilaiUjian1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -312,8 +324,9 @@ dLogout.setIconTextGap(0);
                     .addComponent(dJadwalPelajaran)
                     .addComponent(dAbsensi)
                     .addComponent(dNilaiUjian)
-                    .addComponent(dLogout))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(dLogout)
+                    .addComponent(dNilaiUjian1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,9 +343,11 @@ dLogout.setIconTextGap(0);
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dJadwalPelajaran)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dAbsensi)
+                .addComponent(dAbsensi, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dNilaiUjian)
+                .addComponent(dNilaiUjian, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dNilaiUjian1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(dLogout)
                 .addContainerGap())
@@ -495,6 +510,10 @@ if (confirm == javax.swing.JOptionPane.YES_OPTION) {
 dispose();
 }
     }//GEN-LAST:event_dLogoutActionPerformed
+
+    private void dNilaiUjian1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dNilaiUjian1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dNilaiUjian1ActionPerformed
 private void styleMenu(javax.swing.JButton btn) {
     btn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
     btn.setForeground(java.awt.Color.WHITE);
@@ -590,6 +609,7 @@ private void setMenuCollapse(boolean collapse) {
     private javax.swing.JButton dLogout;
     private javax.swing.JButton dMataPelajaran;
     private javax.swing.JButton dNilaiUjian;
+    private javax.swing.JButton dNilaiUjian1;
     private javax.swing.JButton ddashboard;
     private javax.swing.JButton dtbldashboard;
     private javax.swing.JLabel jLabel1;
