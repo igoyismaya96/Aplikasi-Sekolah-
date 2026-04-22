@@ -9,12 +9,12 @@ package Dashboard_Guru;
  *
  * @author yogii
  */
-public class Dashboard extends javax.swing.JFrame {
+public class DashboardG extends javax.swing.JFrame {
 
     /**
      * Creates new form Dashboard
      */
-    public Dashboard() {
+    public DashboardG() {
         initComponents();
     }
 
@@ -129,7 +129,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1181, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1184, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +141,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(25, 61, 142));
@@ -241,13 +241,13 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void ddashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddashboardActionPerformed
         // TODO add your handling code here:
-        setPanel(new menu_dashboard());
+     
 
     }//GEN-LAST:event_ddashboardActionPerformed
 
     private void dAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dAbsensiActionPerformed
         // TODO add your handling code here:
-        setPanel(new form_absensi());
+     
     }//GEN-LAST:event_dAbsensiActionPerformed
 
     private void dNilaiUjianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dNilaiUjianActionPerformed
@@ -261,7 +261,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void dtbldashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dtbldashboardActionPerformed
         // TODO add your handling code here:
-        toggleSidebar();
+  
 
     }//GEN-LAST:event_dtbldashboardActionPerformed
 
@@ -282,20 +282,21 @@ public class Dashboard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dashboard().setVisible(true);
+                new DashboardG().setVisible(true);
             }
         });
     }

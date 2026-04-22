@@ -9,6 +9,11 @@ import javax.swing.ImageIcon;
 import java.awt.Image;
 import Dashboard_Admin.Dashboard;
 import Dashboard_Guru.form_absen;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import koneksi.koneksi;
+import session.Session;
 /**
  *
  * @author User
@@ -342,56 +347,51 @@ private void cekInput() {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:                                                                                 
 
-    String username = txtusername.getText();
-    String password = new String(txtPassword.getPassword());
-
-    if (username.equals("admin") && password.equals("123")) {
-
-        // 🔥 Ingat saya
-        if (jCheckBox1.isSelected()) {
-            prefs.put("username", username);
-        } else {
-            prefs.remove("username");
-        }
-
-        // 🔥 Buka Dashboard + kirim username
-        new Dashboard(username).setVisible(true);
-
-        // Tutup login
-        this.dispose();
-
-    } else if (username.equals("guru") && password.equals("123")) {
-
-        new form_absen().setVisible(true);
-        this.dispose();
-
-    } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "Login gagal!");
-    }
+    prosesLogin();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 private void prosesLogin() {
     String username = txtusername.getText();
     String password = new String(txtPassword.getPassword());
 
-    if (username.equals("admin") && password.equals("123")) {
+    try {
+        Connection conn = koneksi.getConnection();
 
-        // 🔥 INGAT SAYA
-        if (jCheckBox1.isSelected()) {
-            prefs.put("username", username);
+        String sql = "SELECT * FROM users WHERE username=? AND password=?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, username);
+        ps.setString(2, password);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            String role = rs.getString("role");
+
+            // 🔥 simpan session
+            Session.setSession(username, role);
+
+            // 🔥 ingat saya
+            if (jCheckBox1.isSelected()) {
+                prefs.put("username", username);
+            } else {
+                prefs.remove("username");
+            }
+
+            // 🔥 redirect berdasarkan role
+            if (role.equals("admin")) {
+                new Dashboard().setVisible(true);
+            } else if (role.equals("guru")) {
+                new form_absen().setVisible(true);
+            }
+
+            this.dispose();
+
         } else {
-            prefs.remove("username");
+            javax.swing.JOptionPane.showMessageDialog(this, "Login gagal!");
         }
 
-        Dashboard db = new Dashboard();
-        db.setVisible(true);
-        this.dispose();
-
-    } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "Login gagal!");
-
-        jButton1.setEnabled(true);
-        jButton1.setText("Masuk ke Dashboard");
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
     }
 }
     private void txtusernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusernameKeyReleased
