@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Dashboard_Admin;
+package Dashboard_Guru;
+import Dashboard_Admin.*;
 import java.awt.Dimension;
 import java.awt.Component;
 import javax.swing.SwingUtilities;
@@ -13,7 +14,7 @@ import session.Session;
  *
  * @author User
  */
-public class Dashboard extends javax.swing.JFrame {   
+public class Dashboard_Guru extends javax.swing.JFrame {   
 private boolean isCollapsed = false;
 private javax.swing.Timer sidebarTimer;
 private int sidebarWidth = 200;
@@ -21,7 +22,7 @@ private java.util.Map<String, javax.swing.JPanel> panelCache = new java.util.Has
 
 
 
-    public Dashboard() {
+    public Dashboard_Guru() {
     initComponents();
  
     // 🔐 CEK SESSION 
@@ -43,14 +44,8 @@ private java.util.Map<String, javax.swing.JPanel> panelCache = new java.util.Has
     setSidebarRapi(sidebarWidth);
 
     styleMenu(ddashboard);
-    styleMenu(dDataSiswa);
-    styleMenu(dDataGuru);
-    styleMenu(dMataPelajaran);
-    styleMenu(dDataKelas);
-    styleMenu(dJadwalPelajaran);
     styleMenu(dAbsensi);
     styleMenu(dNilaiUjian);
-    styleMenu(dNilaiUjian1);
     styleMenu(dLogout);
 
     menu_dashboard dash = new menu_dashboard();
@@ -66,9 +61,7 @@ private java.util.Map<String, javax.swing.JPanel> panelCache = new java.util.Has
     Dimension size = new Dimension(btnWidth, 45);
 
     javax.swing.JButton[] menus = {
-        ddashboard, dDataSiswa, dDataGuru,
-        dMataPelajaran, dDataKelas,
-        dJadwalPelajaran, dAbsensi, dNilaiUjian, dNilaiUjian1, dLogout
+        ddashboard, dAbsensi, dNilaiUjian, dLogout
     };
 
     for (javax.swing.JButton btn : menus) {
@@ -90,14 +83,8 @@ private java.util.Map<String, javax.swing.JPanel> panelCache = new java.util.Has
         setMenuCollapse(false);
         jLabel2.setVisible(true);
         ddashboard.setText("Dashboard");
-        dDataSiswa.setText("Data Siswa");
-        dDataGuru.setText("Data Guru");
-        dMataPelajaran.setText("Mata Pelajaran");
-        dDataKelas.setText("Data Kelas");
-        dJadwalPelajaran.setText("Jadwal Pelajaran");
         dAbsensi.setText("Absensi");
         dNilaiUjian.setText("Nilai Ujian");
-        dNilaiUjian1.setText("Nilai Siswa");
         dLogout.setText("Logout");
     }
 
@@ -192,14 +179,8 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
 
         jPanel1 = new javax.swing.JPanel();
         ddashboard = new javax.swing.JButton();
-        dDataSiswa = new javax.swing.JButton();
-        dDataGuru = new javax.swing.JButton();
-        dMataPelajaran = new javax.swing.JButton();
-        dDataKelas = new javax.swing.JButton();
-        dJadwalPelajaran = new javax.swing.JButton();
         dAbsensi = new javax.swing.JButton();
         dNilaiUjian = new javax.swing.JButton();
-        dNilaiUjian1 = new javax.swing.JButton();
         dLogout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -212,7 +193,6 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1102, 707));
 
         jPanel1.setBackground(new java.awt.Color(25, 61, 142));
         jPanel1.setMinimumSize(new java.awt.Dimension(200, 150));
@@ -226,61 +206,6 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
         ddashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ddashboardActionPerformed(evt);
-            }
-        });
-
-        dDataSiswa.setBackground(new java.awt.Color(25, 61, 142));
-        dDataSiswa.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        dDataSiswa.setForeground(new java.awt.Color(255, 255, 255));
-        dDataSiswa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-group-20.png"))); // NOI18N
-        dDataSiswa.setText("Data Siswa");
-        dDataSiswa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dDataSiswaActionPerformed(evt);
-            }
-        });
-
-        dDataGuru.setBackground(new java.awt.Color(25, 61, 142));
-        dDataGuru.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        dDataGuru.setForeground(new java.awt.Color(255, 255, 255));
-        dDataGuru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-graduation-cap-20.png"))); // NOI18N
-        dDataGuru.setText("Data Guru");
-        dDataGuru.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dDataGuruActionPerformed(evt);
-            }
-        });
-
-        dMataPelajaran.setBackground(new java.awt.Color(25, 61, 142));
-        dMataPelajaran.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        dMataPelajaran.setForeground(new java.awt.Color(255, 255, 255));
-        dMataPelajaran.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-book-20.png"))); // NOI18N
-        dMataPelajaran.setText("Mata Pelajaran");
-        dMataPelajaran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dMataPelajaranActionPerformed(evt);
-            }
-        });
-
-        dDataKelas.setBackground(new java.awt.Color(25, 61, 142));
-        dDataKelas.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        dDataKelas.setForeground(new java.awt.Color(255, 255, 255));
-        dDataKelas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-school-20 (1).png"))); // NOI18N
-        dDataKelas.setText("Data Kelas");
-        dDataKelas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dDataKelasActionPerformed(evt);
-            }
-        });
-
-        dJadwalPelajaran.setBackground(new java.awt.Color(25, 61, 142));
-        dJadwalPelajaran.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        dJadwalPelajaran.setForeground(new java.awt.Color(255, 255, 255));
-        dJadwalPelajaran.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-schedule-20.png"))); // NOI18N
-        dJadwalPelajaran.setText("Jadwal Pelajaran");
-        dJadwalPelajaran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dJadwalPelajaranActionPerformed(evt);
             }
         });
 
@@ -299,21 +224,10 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
         dNilaiUjian.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         dNilaiUjian.setForeground(new java.awt.Color(255, 255, 255));
         dNilaiUjian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-exam-20.png"))); // NOI18N
-        dNilaiUjian.setText("Hasil Nilai Siswa");
+        dNilaiUjian.setText("Nilai Siswa");
         dNilaiUjian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dNilaiUjianActionPerformed(evt);
-            }
-        });
-
-        dNilaiUjian1.setBackground(new java.awt.Color(25, 61, 142));
-        dNilaiUjian1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        dNilaiUjian1.setForeground(new java.awt.Color(255, 255, 255));
-        dNilaiUjian1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-account-20 (1).png"))); // NOI18N
-        dNilaiUjian1.setText("Kelola Akun");
-        dNilaiUjian1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dNilaiUjian1ActionPerformed(evt);
             }
         });
 
@@ -350,22 +264,18 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
                         .addComponent(dLogout))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2))
-                            .addComponent(ddashboard)
-                            .addComponent(dDataSiswa)
-                            .addComponent(dDataGuru)
-                            .addComponent(dMataPelajaran)
-                            .addComponent(dDataKelas)
-                            .addComponent(dJadwalPelajaran)
-                            .addComponent(dAbsensi)
-                            .addComponent(dNilaiUjian)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(dNilaiUjian1)))
+                        .addComponent(dNilaiUjian))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(dAbsensi))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ddashboard)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -378,22 +288,10 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
                 .addGap(18, 18, 18)
                 .addComponent(ddashboard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dDataSiswa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dDataGuru)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dMataPelajaran)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dDataKelas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dJadwalPelajaran)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dAbsensi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dNilaiUjian)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
-                .addComponent(dNilaiUjian1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 385, Short.MAX_VALUE)
                 .addComponent(dLogout)
                 .addContainerGap())
         );
@@ -495,10 +393,6 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
     }
     }//GEN-LAST:event_dLogoutActionPerformed
 
-    private void dNilaiUjian1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dNilaiUjian1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dNilaiUjian1ActionPerformed
-
     private void dNilaiUjianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dNilaiUjianActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dNilaiUjianActionPerformed
@@ -506,33 +400,6 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
     private void dAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dAbsensiActionPerformed
         
     }//GEN-LAST:event_dAbsensiActionPerformed
-
-    private void dJadwalPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dJadwalPelajaranActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_dJadwalPelajaranActionPerformed
-
-    private void dDataKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dDataKelasActionPerformed
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_dDataKelasActionPerformed
-
-    private void dMataPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dMataPelajaranActionPerformed
-        showCachedPanel("mapel", () -> new form_raport1());
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_dMataPelajaranActionPerformed
-
-    private void dDataGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dDataGuruActionPerformed
-        // TODO add your handling code here:
-        showCachedPanel("guru", () -> new form_guru());
-    }//GEN-LAST:event_dDataGuruActionPerformed
-
-    private void dDataSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dDataSiswaActionPerformed
-        showCachedPanel("siswa", () -> new form_siswa());
-        form_siswa panel = (form_siswa) panelCache.get("siswa");
-        if (panel != null) panel.refreshData();
-    }//GEN-LAST:event_dDataSiswaActionPerformed
 
     private void ddashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddashboardActionPerformed
         // TODO add your handling code here:
@@ -560,9 +427,7 @@ private void styleMenu(javax.swing.JButton btn) {
 
 private void setMenuCollapse(boolean collapse) {
     javax.swing.JButton[] menus = {
-        ddashboard, dDataSiswa, dDataGuru,
-        dMataPelajaran, dDataKelas,
-        dJadwalPelajaran, dAbsensi, dNilaiUjian, dNilaiUjian1, dLogout
+        ddashboard, dAbsensi, dNilaiUjian, dLogout
     };
 
     for (javax.swing.JButton btn : menus) {
@@ -609,14 +474,8 @@ private void setMenuCollapse(boolean collapse) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton dAbsensi;
-    private javax.swing.JButton dDataGuru;
-    private javax.swing.JButton dDataKelas;
-    private javax.swing.JButton dDataSiswa;
-    private javax.swing.JButton dJadwalPelajaran;
     private javax.swing.JButton dLogout;
-    private javax.swing.JButton dMataPelajaran;
     private javax.swing.JButton dNilaiUjian;
-    private javax.swing.JButton dNilaiUjian1;
     private javax.swing.JButton ddashboard;
     private javax.swing.JButton dtbldashboard;
     private javax.swing.JLabel jLabel1;
