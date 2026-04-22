@@ -309,8 +309,8 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
         dNilaiUjian1.setBackground(new java.awt.Color(25, 61, 142));
         dNilaiUjian1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         dNilaiUjian1.setForeground(new java.awt.Color(255, 255, 255));
-        dNilaiUjian1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-report-20.png"))); // NOI18N
-        dNilaiUjian1.setText("Nilai Siswa");
+        dNilaiUjian1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-account-20 (1).png"))); // NOI18N
+        dNilaiUjian1.setText("Kelola Akun");
         dNilaiUjian1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dNilaiUjian1ActionPerformed(evt);
@@ -362,8 +362,10 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
                             .addComponent(dDataKelas)
                             .addComponent(dJadwalPelajaran)
                             .addComponent(dAbsensi)
-                            .addComponent(dNilaiUjian)
-                            .addComponent(dNilaiUjian1))))
+                            .addComponent(dNilaiUjian)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(dNilaiUjian1)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -389,9 +391,9 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
                 .addComponent(dAbsensi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dNilaiUjian)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(dNilaiUjian1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dLogout)
                 .addContainerGap())
         );
@@ -516,6 +518,7 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
     }//GEN-LAST:event_dDataKelasActionPerformed
 
     private void dMataPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dMataPelajaranActionPerformed
+        showCachedPanel("mapel", () -> new form_raport1());
         // TODO add your handling code here:
        
     }//GEN-LAST:event_dMataPelajaranActionPerformed

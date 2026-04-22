@@ -41,6 +41,7 @@ public class DashboardG extends javax.swing.JFrame {
         dNilaiUjian = new javax.swing.JButton();
         dNilaiUjian1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        dLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,7 +130,7 @@ public class DashboardG extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1184, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1181, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +142,7 @@ public class DashboardG extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(25, 61, 142));
@@ -193,6 +194,17 @@ public class DashboardG extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(888, 490));
         jPanel4.setLayout(new java.awt.BorderLayout());
 
+        dLogout.setBackground(new java.awt.Color(25, 61, 142));
+        dLogout.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        dLogout.setForeground(new java.awt.Color(255, 255, 255));
+        dLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-logout-20.png"))); // NOI18N
+        dLogout.setText("Logout");
+        dLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -202,7 +214,10 @@ public class DashboardG extends javax.swing.JFrame {
                     .addComponent(ddashboard)
                     .addComponent(dAbsensi)
                     .addComponent(dNilaiUjian)
-                    .addComponent(dNilaiUjian1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dNilaiUjian1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(dLogout)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1181, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -217,8 +232,10 @@ public class DashboardG extends javax.swing.JFrame {
                 .addComponent(dNilaiUjian, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(dNilaiUjian1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dLogout)
+                .addGap(10, 10, 10))
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,6 +282,22 @@ public class DashboardG extends javax.swing.JFrame {
 
     }//GEN-LAST:event_dtbldashboardActionPerformed
 
+    private void dLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dLogoutActionPerformed
+
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(
+            this,
+            "Yakin mau logout?",
+            "Konfirmasi",
+            javax.swing.JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+            session.Session.clear(); // 🔥 penting
+            new tampilan.loginform().setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_dLogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -303,6 +336,7 @@ public class DashboardG extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton dAbsensi;
+    private javax.swing.JButton dLogout;
     private javax.swing.JButton dNilaiUjian;
     private javax.swing.JButton dNilaiUjian1;
     private javax.swing.JButton ddashboard;
