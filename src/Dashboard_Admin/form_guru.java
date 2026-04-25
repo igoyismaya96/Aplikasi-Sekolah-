@@ -11,32 +11,153 @@ package Dashboard_Admin;
  */
 public class form_guru extends javax.swing.JPanel {
 private Runnable updateTableRef;
-    /**
-     * Creates new form form_guru1
-     */
+    // ===== RENDERER: tampilkan tombol di tabel =====
+class AksiRenderer extends javax.swing.table.DefaultTableCellRenderer {
+    private javax.swing.JPanel panel = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 3, 3));
+    private javax.swing.JButton btnEdit = new javax.swing.JButton();
+    private javax.swing.JButton btnHapus = new javax.swing.JButton();
+
+    public AksiRenderer() {
+    btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pencil.png")));
+    btnEdit.setPreferredSize(new java.awt.Dimension(28, 28));
+    btnEdit.setContentAreaFilled(false);  // transparan
+    btnEdit.setBorderPainted(false);
+    btnEdit.setFocusPainted(false);
+    btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+    btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete.png")));
+    btnHapus.setPreferredSize(new java.awt.Dimension(28, 28));
+    btnHapus.setContentAreaFilled(false);  // transparan
+    btnHapus.setBorderPainted(false);
+    btnHapus.setFocusPainted(false);
+    btnHapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+    panel.setOpaque(true);
+    panel.add(btnEdit);
+    panel.add(btnHapus);
+}
+
+    @Override
+    public java.awt.Component getTableCellRendererComponent(
+            javax.swing.JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+        panel.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
+        return panel;
+    }
+}
+
+// ===== EDITOR: tombol bisa diklik =====
+class AksiEditor extends javax.swing.DefaultCellEditor {
+    private javax.swing.JPanel panel = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 3, 3));
+    private javax.swing.JButton btnEdit = new javax.swing.JButton();
+    private javax.swing.JButton btnHapus = new javax.swing.JButton();
+    private int clickedRow;
+
+    public AksiEditor() {
+    super(new javax.swing.JCheckBox());
+
+    btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pencil.png")));
+    btnEdit.setPreferredSize(new java.awt.Dimension(28, 28));
+    btnEdit.setContentAreaFilled(false);  // transparan
+    btnEdit.setBorderPainted(false);
+    btnEdit.setFocusPainted(false);
+    btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+    btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete.png")));
+    btnHapus.setPreferredSize(new java.awt.Dimension(28, 28));
+    btnHapus.setContentAreaFilled(false);  // transparan
+    btnHapus.setBorderPainted(false);
+    btnHapus.setFocusPainted(false);
+    btnHapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+    panel.setOpaque(true);
+    panel.add(btnEdit);
+    panel.add(btnHapus);
+
+   
+
+        btnEdit.addActionListener(e -> {
+            fireEditingStopped();
+            // ambil data dari baris
+            String nipVal = tblguru.getValueAt(clickedRow, 0).toString();
+            String namaVal = tblguru.getValueAt(clickedRow, 1).toString();
+            String jkVal = tblguru.getValueAt(clickedRow, 2).toString();
+            String mapelVal = tblguru.getValueAt(clickedRow, 3).toString();
+            String notlpVal = tblguru.getValueAt(clickedRow, 4).toString();
+            String statusVal = tblguru.getValueAt(clickedRow, 5).toString();
+
+            nip.setText(nipVal);
+            nip.setEnabled(false);
+            nama.setText(namaVal);
+            txtjk.setSelectedItem(jkVal);
+            mapel1.setSelectedItem(mapelVal);
+            notlp.setText(notlpVal);
+            status.setSelectedItem(statusVal);
+            jLabel28.setText("Edit Data Guru");
+            showPanel("add");
+        });
+
+        btnHapus.addActionListener(e -> {
+            fireEditingStopped();
+            String nipHapus = tblguru.getValueAt(clickedRow, 0).toString();
+            int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(
+                tblguru, "Yakin ingin menghapus NIP: " + nipHapus + " ?",
+                "Konfirmasi Hapus", javax.swing.JOptionPane.YES_NO_OPTION
+            );
+            if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
+                try {
+                    java.sql.Connection conn = koneksi.koneksi.getConnection();
+                    java.sql.PreparedStatement pst = conn.prepareStatement(
+                        "DELETE FROM data_guru WHERE nip=?"
+                    );
+                    pst.setString(1, nipHapus);
+                    pst.executeUpdate();
+                    javax.swing.JOptionPane.showMessageDialog(tblguru, "Data berhasil dihapus!");
+                    loadDataAsync();
+                } catch (Exception ex) {
+                    javax.swing.JOptionPane.showMessageDialog(tblguru, "Gagal: " + ex.getMessage());
+                }
+            }
+        });
+    }
+
+    @Override
+    public java.awt.Component getTableCellEditorComponent(
+            javax.swing.JTable table, Object value,
+            boolean isSelected, int row, int column) {
+        clickedRow = row;
+        panel.setBackground(table.getSelectionBackground());
+        return panel;
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+        return "";
+    }
+}
     public form_guru() {
     initComponents();
-    // =========================
+    
 // PLACEHOLDER TXT CARI
 // =========================
-txtcari.setText("Cari NIS/Nama...");
-txtcari.setForeground(new java.awt.Color(150,150,150));
+    txtcari.setText("Cari NIS/Nama...");
+    txtcari.setForeground(new java.awt.Color(150,150,150));
 
-txtcari.addFocusListener(new java.awt.event.FocusAdapter() {
-    public void focusGained(java.awt.event.FocusEvent evt) {
-        if (txtcari.getText().equals("Cari NIS/Nama...")) {
-            txtcari.setText("");
-            txtcari.setForeground(new java.awt.Color(0,0,0));
+    // Fitur pencarian realtime
+    txtcari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+        @Override
+        public void insertUpdate(javax.swing.event.DocumentEvent e) {
+            filterRealtime();
         }
-    }
-
-    public void focusLost(java.awt.event.FocusEvent evt) {
-        if (txtcari.getText().isEmpty()) {
-            txtcari.setText("Cari NIS/Nama...");
-            txtcari.setForeground(new java.awt.Color(150,150,150));
+        @Override
+        public void removeUpdate(javax.swing.event.DocumentEvent e) {
+            filterRealtime();
         }
-    }
-});
+        @Override
+        public void changedUpdate(javax.swing.event.DocumentEvent e) {
+            filterRealtime();
+        }
+    });
     tblguru.setDoubleBuffered(true);
     tblguru.setFillsViewportHeight(true);
     tblguru.setRowHeight(30);
@@ -100,6 +221,7 @@ txtcari.addFocusListener(new java.awt.event.FocusAdapter() {
     // 7. 
     showPanel("view");
     loadDataAsync();
+    
 
 gtutup.addActionListener(e -> showPanel("view"));
 gbatal.addActionListener(e -> {
@@ -107,21 +229,6 @@ gbatal.addActionListener(e -> {
     showPanel("view");
 });
 
-// Fitur pencarian
-txtcari.addKeyListener(new java.awt.event.KeyAdapter() {
-    public void keyReleased(java.awt.event.KeyEvent e) {
-        String keyword = txtcari.getText().toLowerCase();
-        javax.swing.table.DefaultTableModel model = 
-            (javax.swing.table.DefaultTableModel) tblguru.getModel();
-        model.setRowCount(0);
-        for (Object[] row : dataList) {
-            if (row[0].toString().toLowerCase().contains(keyword) ||
-                row[1].toString().toLowerCase().contains(keyword)) {
-                model.addRow(row);
-            }
-        }
-    }
-});
 // tombol tambah bawah 
 final int[] currentPage = {1};
 final int rowsPerPage = 10;
@@ -237,18 +344,25 @@ private void loadData() {
 
 
 private void tampilkanData() {
-    String[] kolom = {"NIP", "Nama", "Jenis Kelamin", "Mata Pelajaran", "No. HP", "Status"};
+    String[] kolom = {"NIP", "Nama", "Jenis Kelamin", "Mata Pelajaran", "No. HP", "Status", "Aksi"};
     javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(kolom, 0) {
         @Override
         public boolean isCellEditable(int row, int column) {
-            return false; // tabel tidak bisa diedit langsung
+            return column == 6; // hanya kolom Aksi yang bisa diklik
         }
     };
     tblguru.setModel(model);
-    tblguru.setRowHeight(25);
+    tblguru.setRowHeight(35);
     tblguru.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+
+    // pasang renderer dan editor di kolom Aksi
+    tblguru.getColumn("Aksi").setCellRenderer(new AksiRenderer());
+    tblguru.getColumn("Aksi").setCellEditor(new AksiEditor());
+    tblguru.getColumn("Aksi").setPreferredWidth(70);
+    tblguru.getColumn("Aksi").setMaxWidth(70);
+    tblguru.getColumn("Aksi").setMinWidth(70);
     slabel.setText("Total : " + dataList.size());
-    
+
     if (updateTableRef != null) {
         updateTableRef.run();
     }
@@ -267,6 +381,17 @@ private void cariData(String keyword) {
     }
 }
 
+private void filterRealtime() {
+    String keyword = txtcari.getText().trim();
+
+    if (keyword.equals("Cari NIS/Nama...") || keyword.isEmpty()) {
+        loadDataAsync();
+        return;
+    }
+
+    cariData(keyword);
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -283,8 +408,6 @@ private void cariData(String keyword) {
         jLabel26 = new javax.swing.JLabel();
         txtcari = new javax.swing.JTextField();
         gtambah = new javax.swing.JButton();
-        gedit = new javax.swing.JButton();
-        ghapus = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         slabel = new javax.swing.JLabel();
@@ -361,30 +484,6 @@ private void cariData(String keyword) {
             }
         });
 
-        gedit.setBackground(new java.awt.Color(255, 204, 51));
-        gedit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        gedit.setForeground(new java.awt.Color(255, 255, 255));
-        gedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-edit-20.png"))); // NOI18N
-        gedit.setText("Edit");
-        gedit.setPreferredSize(new java.awt.Dimension(89, 30));
-        gedit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                geditActionPerformed(evt);
-            }
-        });
-
-        ghapus.setBackground(new java.awt.Color(255, 51, 51));
-        ghapus.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        ghapus.setForeground(new java.awt.Color(255, 255, 255));
-        ghapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-20.png"))); // NOI18N
-        ghapus.setText("Hapus");
-        ghapus.setPreferredSize(new java.awt.Dimension(89, 30));
-        ghapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ghapusActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -396,24 +495,16 @@ private void cariData(String keyword) {
                 .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(gtambah, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(gedit, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ghapus, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(gedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ghapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(gtambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel26)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gtambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -490,7 +581,7 @@ private void cariData(String keyword) {
                 .addComponent(gsrknk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spgakh)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -529,7 +620,7 @@ private void cariData(String keyword) {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -542,7 +633,7 @@ private void cariData(String keyword) {
                 .addContainerGap()
                 .addGroup(panelviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelviewLayout.setVerticalGroup(
@@ -765,53 +856,6 @@ private void cariData(String keyword) {
     showPanel("add");
     }//GEN-LAST:event_gtambahActionPerformed
 
-    private void geditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_geditActionPerformed
-       int baris = tblguru.getSelectedRow();
-    if (baris == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Pilih data guru dulu!");
-        return;
-    }
-    // Isi form dari tabel
-    nip.setText(tblguru.getValueAt(baris, 0).toString());
-    nip.setEnabled(false); // NIP tidak boleh diubah
-    nama.setText(tblguru.getValueAt(baris, 1).toString());
-    txtjk.setSelectedItem(tblguru.getValueAt(baris, 2).toString());
-    mapel1.setSelectedItem(tblguru.getValueAt(baris, 3).toString());
-    notlp.setText(tblguru.getValueAt(baris, 4).toString());
-    status.setSelectedItem(tblguru.getValueAt(baris, 5).toString());
-    jLabel28.setText("Edit Data Guru");
-    showPanel("add");
-    }//GEN-LAST:event_geditActionPerformed
-
-    private void ghapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ghapusActionPerformed
-     int baris = tblguru.getSelectedRow();
-    if (baris == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Pilih data yang mau dihapus!");
-        return;
-    }
-    
-    // Ganti nama variabel dari "nip" ke "nipHapus" agar tidak konflik
-    String nipHapus = tblguru.getValueAt(baris, 0).toString();
-    int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(
-        this, "Yakin ingin menghapus data NIP: " + nipHapus + " ?",
-        "Konfirmasi Hapus", javax.swing.JOptionPane.YES_NO_OPTION
-    );
-    if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
-        try {
-            java.sql.Connection conn = koneksi.koneksi.getConnection();
-            java.sql.PreparedStatement pst = conn.prepareStatement(
-                "DELETE FROM data_guru WHERE nip=?"
-            );
-            pst.setString(1, nipHapus);
-            pst.executeUpdate();
-            javax.swing.JOptionPane.showMessageDialog(this, "Data berhasil dihapus!");
-            loadDataAsync();
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Gagal hapus: " + e.getMessage());
-        }
-    } 
-    }//GEN-LAST:event_ghapusActionPerformed
-
     private void tblguruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblguruMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblguruMouseClicked
@@ -876,8 +920,6 @@ private void cariData(String keyword) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Gsimpan;
     private javax.swing.JButton gbatal;
-    private javax.swing.JButton gedit;
-    private javax.swing.JButton ghapus;
     private javax.swing.JButton gsrknk;
     private javax.swing.JButton gsrkrk;
     private javax.swing.JButton gtambah;

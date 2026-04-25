@@ -8,7 +8,7 @@ import java.util.prefs.Preferences;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import Dashboard_Admin.Dashboard;
-import Dashboard_Guru.form_absen;
+import Dashboard_Guru.Dashboard_Guru;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -381,7 +381,7 @@ private void prosesLogin() {
             if (role.equals("admin")) {
                 new Dashboard().setVisible(true);
             } else if (role.equals("guru")) {
-                new form_absen().setVisible(true);
+                new Dashboard_Guru().setVisible(true);
             }
 
             this.dispose();

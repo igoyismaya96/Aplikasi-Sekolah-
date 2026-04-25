@@ -50,7 +50,7 @@ private java.util.Map<String, javax.swing.JPanel> panelCache = new java.util.Has
     styleMenu(dJadwalPelajaran);
     styleMenu(dAbsensi);
     styleMenu(dNilaiUjian);
-    styleMenu(dNilaiUjian1);
+    styleMenu(dakun);
     styleMenu(dLogout);
 
     menu_dashboard dash = new menu_dashboard();
@@ -68,7 +68,7 @@ private java.util.Map<String, javax.swing.JPanel> panelCache = new java.util.Has
     javax.swing.JButton[] menus = {
         ddashboard, dDataSiswa, dDataGuru,
         dMataPelajaran, dDataKelas,
-        dJadwalPelajaran, dAbsensi, dNilaiUjian, dNilaiUjian1, dLogout
+        dJadwalPelajaran, dAbsensi, dNilaiUjian, dakun, dLogout
     };
 
     for (javax.swing.JButton btn : menus) {
@@ -97,7 +97,7 @@ private java.util.Map<String, javax.swing.JPanel> panelCache = new java.util.Has
         dJadwalPelajaran.setText("Jadwal Pelajaran");
         dAbsensi.setText("Absensi");
         dNilaiUjian.setText("Nilai Ujian");
-        dNilaiUjian1.setText("Nilai Siswa");
+        dakun.setText("akun");
         dLogout.setText("Logout");
     }
 
@@ -117,13 +117,14 @@ private void preloadPanels() {
         @Override
         protected void done() {
             // Buat panel di sini (EDT) — aman!
-            String[] keys = {"siswa", "guru", "mapel", "kelas", "jadwal", "absensi"};
+            String[] keys = {"siswa", "guru", "mapel", "kelas", "jadwal", "absensi","akun"};
             javax.swing.JPanel[] panels = {
                 new form_siswa(),
                 new form_guru(),
                 new form_mapel(),
                 new form_kelas(),
                 new form_japel(),
+                new kelola_akun(),
                 new form_absensi()
             };
 
@@ -199,7 +200,7 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
         dJadwalPelajaran = new javax.swing.JButton();
         dAbsensi = new javax.swing.JButton();
         dNilaiUjian = new javax.swing.JButton();
-        dNilaiUjian1 = new javax.swing.JButton();
+        dakun = new javax.swing.JButton();
         dLogout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -306,14 +307,14 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
             }
         });
 
-        dNilaiUjian1.setBackground(new java.awt.Color(25, 61, 142));
-        dNilaiUjian1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        dNilaiUjian1.setForeground(new java.awt.Color(255, 255, 255));
-        dNilaiUjian1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-account-20 (1).png"))); // NOI18N
-        dNilaiUjian1.setText("Kelola Akun");
-        dNilaiUjian1.addActionListener(new java.awt.event.ActionListener() {
+        dakun.setBackground(new java.awt.Color(25, 61, 142));
+        dakun.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        dakun.setForeground(new java.awt.Color(255, 255, 255));
+        dakun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-account-20 (1).png"))); // NOI18N
+        dakun.setText("Kelola Akun");
+        dakun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dNilaiUjian1ActionPerformed(evt);
+                dakunActionPerformed(evt);
             }
         });
 
@@ -365,7 +366,7 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
                             .addComponent(dNilaiUjian)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(dNilaiUjian1)))
+                        .addComponent(dakun)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -392,7 +393,7 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dNilaiUjian)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
-                .addComponent(dNilaiUjian1)
+                .addComponent(dakun)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dLogout)
                 .addContainerGap())
@@ -495,9 +496,9 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
     }
     }//GEN-LAST:event_dLogoutActionPerformed
 
-    private void dNilaiUjian1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dNilaiUjian1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dNilaiUjian1ActionPerformed
+    private void dakunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dakunActionPerformed
+        showCachedPanel("akun", () -> new kelola_akun());
+    }//GEN-LAST:event_dakunActionPerformed
 
     private void dNilaiUjianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dNilaiUjianActionPerformed
         // TODO add your handling code here:
@@ -562,7 +563,7 @@ private void setMenuCollapse(boolean collapse) {
     javax.swing.JButton[] menus = {
         ddashboard, dDataSiswa, dDataGuru,
         dMataPelajaran, dDataKelas,
-        dJadwalPelajaran, dAbsensi, dNilaiUjian, dNilaiUjian1, dLogout
+        dJadwalPelajaran, dAbsensi, dNilaiUjian, dakun, dLogout
     };
 
     for (javax.swing.JButton btn : menus) {
@@ -616,7 +617,7 @@ private void setMenuCollapse(boolean collapse) {
     private javax.swing.JButton dLogout;
     private javax.swing.JButton dMataPelajaran;
     private javax.swing.JButton dNilaiUjian;
-    private javax.swing.JButton dNilaiUjian1;
+    private javax.swing.JButton dakun;
     private javax.swing.JButton ddashboard;
     private javax.swing.JButton dtbldashboard;
     private javax.swing.JLabel jLabel1;

@@ -48,7 +48,7 @@ private java.util.Map<String, javax.swing.JPanel> panelCache = new java.util.Has
     styleMenu(dNilaiUjian);
     styleMenu(dLogout);
 
-    menu_dashboard dash = new menu_dashboard();
+    menu_dashboard_guru dash = new menu_dashboard_guru();
     panelCache.put("dashboard", dash);
     jPanel4.add(dash, "dashboard");
     ((java.awt.CardLayout) jPanel4.getLayout()).show(jPanel4, "dashboard");
@@ -84,7 +84,7 @@ private java.util.Map<String, javax.swing.JPanel> panelCache = new java.util.Has
         jLabel2.setVisible(true);
         ddashboard.setText("Dashboard");
         dAbsensi.setText("Absensi");
-        dNilaiUjian.setText("Nilai Ujian");
+        dNilaiUjian.setText("Nilai");
         dLogout.setText("Logout");
     }
 
@@ -104,13 +104,9 @@ private void preloadPanels() {
         @Override
         protected void done() {
             // Buat panel di sini (EDT) — aman!
-            String[] keys = {"siswa", "guru", "mapel", "kelas", "jadwal", "absensi"};
+            String[] keys = {"nilai", "absensi"};
             javax.swing.JPanel[] panels = {
-                new form_siswa(),
-                new form_guru(),
-                new form_mapel(),
-                new form_kelas(),
-                new form_japel(),
+                new form_nilai (),
                 new form_absensi()
             };
 
@@ -258,40 +254,32 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dLogout)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(dLogout))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(dNilaiUjian))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(dAbsensi))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ddashboard)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(dNilaiUjian)
+                    .addComponent(dAbsensi)
+                    .addComponent(ddashboard))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ddashboard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dAbsensi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dNilaiUjian)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 385, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 401, Short.MAX_VALUE)
                 .addComponent(dLogout)
                 .addContainerGap())
         );
@@ -394,16 +382,16 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
     }//GEN-LAST:event_dLogoutActionPerformed
 
     private void dNilaiUjianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dNilaiUjianActionPerformed
-        // TODO add your handling code here:
+       showCachedPanel("nilai", () -> new form_nilai());
     }//GEN-LAST:event_dNilaiUjianActionPerformed
 
     private void dAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dAbsensiActionPerformed
-        
+         showCachedPanel("absensi", () -> new form_absensi());
     }//GEN-LAST:event_dAbsensiActionPerformed
 
     private void ddashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddashboardActionPerformed
         // TODO add your handling code here:
-        showCachedPanel("dashboard", () -> new menu_dashboard());
+        showCachedPanel("dashboard", () -> new menu_dashboard_guru());
 
     }//GEN-LAST:event_ddashboardActionPerformed
 private void styleMenu(javax.swing.JButton btn) {

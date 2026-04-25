@@ -20,29 +20,151 @@ private String mode = "tambah";
 private int currentPage = 1;//update tombol bawah 
 private int rowsPerPage = 10;//update tombol bawah 
 private int totalPages = 1;//update tombol bawah 
-    /**
-     * Creates new form form_siswa1
-     */
+private Runnable updateTableRef = null;
+  
+// ===== RENDERER =====
+class SiswaAksiRenderer extends javax.swing.table.DefaultTableCellRenderer {
+    private javax.swing.JPanel panel = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 2));
+    private javax.swing.JButton btnEdit = new javax.swing.JButton();
+    private javax.swing.JButton btnHapus = new javax.swing.JButton();
+
+    public SiswaAksiRenderer() {
+    btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pencil.png")));
+    btnEdit.setPreferredSize(new java.awt.Dimension(28, 28));
+    btnEdit.setContentAreaFilled(false);  // transparan
+    btnEdit.setBorderPainted(false);
+    btnEdit.setFocusPainted(false);
+    btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+    btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete.png")));
+    btnHapus.setPreferredSize(new java.awt.Dimension(28, 28));
+    btnHapus.setContentAreaFilled(false);  // transparan
+    btnHapus.setBorderPainted(false);
+    btnHapus.setFocusPainted(false);
+    btnHapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+    panel.setOpaque(true);
+    panel.add(btnEdit);
+    panel.add(btnHapus);
+}
+
+    @Override
+    public java.awt.Component getTableCellRendererComponent(
+            javax.swing.JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+        panel.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
+        return panel;
+    }
+}
+
+// ===== EDITOR =====
+class SiswaAksiEditor extends javax.swing.DefaultCellEditor {
+    private javax.swing.JPanel panel = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 2));
+    private javax.swing.JButton btnEdit = new javax.swing.JButton();
+    private javax.swing.JButton btnHapus = new javax.swing.JButton();
+    private int clickedRow;
+
+    public SiswaAksiEditor() {
+    super(new javax.swing.JCheckBox());
+
+    btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pencil.png")));
+    btnEdit.setPreferredSize(new java.awt.Dimension(28, 28));
+    btnEdit.setContentAreaFilled(false);  // transparan
+    btnEdit.setBorderPainted(false);
+    btnEdit.setFocusPainted(false);
+    btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+    btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete.png")));
+    btnHapus.setPreferredSize(new java.awt.Dimension(28, 28));
+    btnHapus.setContentAreaFilled(false);  // transparan
+    btnHapus.setBorderPainted(false);
+    btnHapus.setFocusPainted(false);
+    btnHapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+    panel.setOpaque(true);
+    panel.add(btnEdit);
+    panel.add(btnHapus);
+
+    // ... sisa actionListener tetap sama
+
+        btnEdit.addActionListener(e -> {
+            fireEditingStopped();
+            // ambil data dari baris
+            String nisVal   = tabelsiswa.getValueAt(clickedRow, 0).toString();
+            String namaVal  = tabelsiswa.getValueAt(clickedRow, 1).toString();
+            String jkVal    = tabelsiswa.getValueAt(clickedRow, 2).toString();
+            String kelasVal = tabelsiswa.getValueAt(clickedRow, 3).toString();
+            String almtVal  = tabelsiswa.getValueAt(clickedRow, 4).toString();
+
+            // isi form
+            txtnis.setText(nisVal);
+            txtnis.setEnabled(false);
+            txtnm.setText(namaVal);
+            txtjk.setSelectedItem(jkVal);
+            txtkls.setSelectedItem(kelasVal);
+            txtalmt.setText(almtVal);
+
+            mode = "edit";
+            showPanel("add");
+        });
+
+        btnHapus.addActionListener(e -> {
+            fireEditingStopped();
+            String nisHapus = tabelsiswa.getValueAt(clickedRow, 0).toString();
+            int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(
+                tabelsiswa, "Yakin ingin menghapus NIS: " + nisHapus + " ?",
+                "Konfirmasi Hapus", javax.swing.JOptionPane.YES_NO_OPTION
+            );
+            if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
+                try {
+                    java.sql.Connection conn = koneksi.getConnection();
+                    java.sql.PreparedStatement pst = conn.prepareStatement(
+                        "DELETE FROM data_siswa WHERE nis=?"
+                    );
+                    pst.setString(1, nisHapus);
+                    pst.executeUpdate();
+                    javax.swing.JOptionPane.showMessageDialog(tabelsiswa, "Data berhasil dihapus!");
+                    loadDataAsync();
+                } catch (Exception ex) {
+                    javax.swing.JOptionPane.showMessageDialog(tabelsiswa, "Gagal: " + ex.getMessage());
+                }
+            }
+        });
+    }
+
+    @Override
+    public java.awt.Component getTableCellEditorComponent(
+            javax.swing.JTable table, Object value,
+            boolean isSelected, int row, int column) {
+        clickedRow = row;
+        panel.setBackground(table.getSelectionBackground());
+        return panel;
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+        return "";
+    }
+}
+
 public form_siswa() {
     initComponents();
-txtcari.setText("Cari NIS/Nama...");
-txtcari.setForeground(new java.awt.Color(150,150,150));
-
-txtcari.addFocusListener(new java.awt.event.FocusAdapter() {
-    public void focusGained(java.awt.event.FocusEvent evt) {
-        if (txtcari.getText().equals("Cari NIS/Nama...")) {
-            txtcari.setText("");
-            txtcari.setForeground(new java.awt.Color(0,0,0));
-        }
-    }
-
-    public void focusLost(java.awt.event.FocusEvent evt) {
-        if (txtcari.getText().isEmpty()) {
-            txtcari.setText("Cari NIS/Nama...");
-            txtcari.setForeground(new java.awt.Color(150,150,150));
-        }
-    }
-});
+    txtcari.setText("Cari NIS/Nama...");
+    txtcari.setForeground(new java.awt.Color(150,150,150));
+    txtcari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                filterRealtime();
+            }
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                filterRealtime();
+            }
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                filterRealtime();
+            }
+        });
     // =========================
     // FIX PANEL ADD (FULL LEBAR)
     // =========================
@@ -177,9 +299,8 @@ txtcari.addFocusListener(new java.awt.event.FocusAdapter() {
     worker.execute();
 }
    
-   private void loadData() {
+  private void loadData() {
     dataList.clear();
-
     try (
         java.sql.Connection conn = koneksi.getConnection();
         java.sql.Statement st = conn.createStatement();
@@ -191,7 +312,8 @@ txtcari.addFocusListener(new java.awt.event.FocusAdapter() {
                 rs.getString("nama"),
                 rs.getString("jk"),
                 rs.getString("kelas"),
-                rs.getString("alamat")
+                rs.getString("alamat"),
+                "aksi" // kolom aksi
             });
         }
     } catch (Exception e) {
@@ -200,54 +322,54 @@ txtcari.addFocusListener(new java.awt.event.FocusAdapter() {
 }
  //utntuk update tombol bawah   
 private void tampilkanData() {
-    String[] kolom = {"NIS", "Nama Siswa", "Jenis Kelamin", "Kelas", "Alamat"};
-    DefaultTableModel model = new DefaultTableModel(kolom, 0) {
-    @Override
-    public boolean isCellEditable(int row, int column) {
-        return false; // 🔥 bikin tabel tidak bisa diedit
-    }
-};
+    String[] kolom = {"NIS", "Nama Siswa", "Jenis Kelamin", "Kelas", "Alamat", "Aksi"};
+    javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(kolom, 0) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return column == 5; // hanya kolom Aksi yang bisa diklik
+        }
+    };
 
-    // 🔥 Hitung total halaman
+    // Hitung total halaman
     totalPages = (int) Math.ceil((double) dataList.size() / rowsPerPage);
+    if (totalPages == 0) totalPages = 1;
+    if (currentPage > totalPages) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
 
-    // 🔥 Kalau data kosong
-    if (totalPages == 0) {
-        totalPages = 1;
-    }
-
-    // 🔥 Amankan current page
-    if (currentPage > totalPages) {
-        currentPage = totalPages;
-    }
-    if (currentPage < 1) {
-        currentPage = 1;
-    }
-
-    // 🔥 Hitung index data yang ditampilkan
+    // Hitung index data yang ditampilkan
     int start = (currentPage - 1) * rowsPerPage;
     int end = Math.min(start + rowsPerPage, dataList.size());
 
-    // 🔥 Isi tabel sesuai halaman
+    // Isi tabel sesuai halaman
     for (int i = start; i < end; i++) {
         model.addRow(dataList.get(i));
     }
 
     tabelsiswa.setModel(model);
+    tabelsiswa.setRowHeight(35);
+    tabelsiswa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
 
-    // 🔥 Update dropdown halaman
+    // pasang renderer dan editor di kolom Aksi
+    tabelsiswa.getColumn("Aksi").setCellRenderer(new SiswaAksiRenderer());
+    tabelsiswa.getColumn("Aksi").setCellEditor(new SiswaAksiEditor());
+    tabelsiswa.getColumn("Aksi").setPreferredWidth(70);
+    tabelsiswa.getColumn("Aksi").setMaxWidth(70);
+    tabelsiswa.getColumn("Aksi").setMinWidth(70);
+
+    // Update dropdown halaman
     plhbtn.removeAllItems();
     for (int i = 1; i <= totalPages; i++) {
         plhbtn.addItem(String.valueOf(i));
     }
-    // 🔥 Set dropdown sesuai halaman aktif
     plhbtn.setSelectedItem(String.valueOf(currentPage));
 
- 
-
-    // 🔥 Info total + halaman
+    // Info total + halaman
     slabel.setText("Total : " + dataList.size() +
             " | Halaman " + currentPage + " / " + totalPages);
+
+    if (updateTableRef != null) {
+        updateTableRef.run();
+    }
 }
 private void autoNIS() {
     try {
@@ -314,6 +436,17 @@ private void cariData(String keyword) {
         e.printStackTrace();
     }
 }
+
+private void filterRealtime() {
+    String keyword = txtcari.getText().trim();
+
+    if (keyword.equals("Cari NIS/Nama...") || keyword.isEmpty()) {
+        loadDataAsync();
+        return;
+    }
+
+    cariData(keyword);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -330,8 +463,6 @@ private void cariData(String keyword) {
         jLabel26 = new javax.swing.JLabel();
         txtcari = new javax.swing.JTextField();
         Stambah = new javax.swing.JButton();
-        sedit = new javax.swing.JButton();
-        shapus = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -408,30 +539,6 @@ private void cariData(String keyword) {
             }
         });
 
-        sedit.setBackground(new java.awt.Color(255, 204, 51));
-        sedit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        sedit.setForeground(new java.awt.Color(255, 255, 255));
-        sedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-edit-20.png"))); // NOI18N
-        sedit.setText("Edit");
-        sedit.setPreferredSize(new java.awt.Dimension(89, 30));
-        sedit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seditActionPerformed(evt);
-            }
-        });
-
-        shapus.setBackground(new java.awt.Color(255, 51, 51));
-        shapus.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        shapus.setForeground(new java.awt.Color(255, 255, 255));
-        shapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-20.png"))); // NOI18N
-        shapus.setText("Hapus");
-        shapus.setPreferredSize(new java.awt.Dimension(89, 30));
-        shapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shapusActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -443,24 +550,16 @@ private void cariData(String keyword) {
                 .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Stambah, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sedit, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(shapus, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(sedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(shapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Stambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel26)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Stambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26))
                 .addGap(16, 16, 16))
         );
 
@@ -559,7 +658,7 @@ private void cariData(String keyword) {
                 .addComponent(gsrknk)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spgakh)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(365, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -846,42 +945,6 @@ private void cariData(String keyword) {
     showPanel("view");
     }//GEN-LAST:event_stutupActionPerformed
 
-    private void shapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shapusActionPerformed
-        int baris = tabelsiswa.getSelectedRow();
-
-    if (baris == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Pilih data yang mau dihapus!");
-        return;
-    }
-
-    String nis = tabelsiswa.getValueAt(baris, 0).toString();
-
-    int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(
-        this,
-        "Yakin ingin menghapus data NIS: " + nis + " ?",
-        "Konfirmasi Hapus",
-        javax.swing.JOptionPane.YES_NO_OPTION
-    );
-
-    if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
-        try {
-            java.sql.Connection conn = koneksi.getConnection();
-            String sql = "DELETE FROM data_siswa WHERE nis=?";
-            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-
-            pst.setString(1, nis);
-            pst.executeUpdate();
-
-            javax.swing.JOptionPane.showMessageDialog(this, "Data berhasil dihapus!");
-
-            loadDataAsync(); // refresh tabel
-
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Gagal hapus: " + e.getMessage());
-        }
-    }
-    }//GEN-LAST:event_shapusActionPerformed
-
     private void ssimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssimpanActionPerformed
                                        
     try {
@@ -948,31 +1011,6 @@ private void cariData(String keyword) {
     private void tabelsiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelsiswaMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tabelsiswaMouseClicked
-
-    private void seditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seditActionPerformed
-        int baris = tabelsiswa.getSelectedRow();
-
-    if (baris == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Pilih data dulu!");
-        return;
-    }
-
-    // ambil data dari tabel
-    txtnis.setText(tabelsiswa.getValueAt(baris, 0).toString());
-    txtnm.setText(tabelsiswa.getValueAt(baris, 1).toString());
-    txtjk.setSelectedItem(tabelsiswa.getValueAt(baris, 2).toString());
-    txtkls.setSelectedItem(tabelsiswa.getValueAt(baris, 3).toString());
-    txtalmt.setText(tabelsiswa.getValueAt(baris, 4).toString());
-
-    // ubah mode
-    mode = "edit";
-
-    // NIS tidak boleh diubah
-    txtnis.setEnabled(false);
-
-    // pindah ke form
-    showPanel("add");
-    }//GEN-LAST:event_seditActionPerformed
 
     private void txtnisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnisActionPerformed
         // TODO add your handling code here:
@@ -1042,8 +1080,6 @@ if (currentPage > 1) {
     private javax.swing.JPanel panelmain;
     private javax.swing.JComboBox<String> plhbtn;
     private javax.swing.JButton sbatal;
-    private javax.swing.JButton sedit;
-    private javax.swing.JButton shapus;
     private javax.swing.JLabel slabel;
     private javax.swing.JButton spgakh;
     private javax.swing.JButton spgawl;
