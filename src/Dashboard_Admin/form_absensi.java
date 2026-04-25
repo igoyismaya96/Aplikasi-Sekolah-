@@ -29,53 +29,53 @@ public class form_absensi extends javax.swing.JPanel {
 
         mainpanel = new javax.swing.JPanel();
         view = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        tblabsensi = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelsiswa = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        bawal = new javax.swing.JButton();
+        bkiri = new javax.swing.JButton();
+        bkanan = new javax.swing.JButton();
+        bakhir = new javax.swing.JButton();
         cbpage = new javax.swing.JComboBox<>();
         jPanel7 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         txtcari = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        bubah = new javax.swing.JButton();
+        bhapus = new javax.swing.JButton();
         txttgl = new javax.swing.JTextField();
         cbkelas = new javax.swing.JComboBox<>();
         add = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        btutup = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        textField1 = new java.awt.TextField();
+        txttanggal = new java.awt.TextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        textField2 = new java.awt.TextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
+        txtsiswa = new java.awt.TextField();
+        rbhadir = new javax.swing.JRadioButton();
+        rbsakit = new javax.swing.JRadioButton();
+        rbizin = new javax.swing.JRadioButton();
+        rbalpha = new javax.swing.JRadioButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtket = new javax.swing.JTextField();
+        cbpilihk = new javax.swing.JComboBox<>();
 
         setLayout(new java.awt.CardLayout());
 
         mainpanel.setLayout(new java.awt.CardLayout());
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        tblabsensi.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-what-i-do-20 (1).png"))); // NOI18N
@@ -122,16 +122,16 @@ public class form_absensi extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        jButton2.setText("Page Awal");
+        bawal.setText("Page Awal");
 
-        jButton3.setText("<");
+        bkiri.setText("<");
 
-        jButton4.setText(">");
+        bkanan.setText(">");
 
-        jButton5.setText("Page Akhir");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        bakhir.setText("Page Akhir");
+        bakhir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                bakhirActionPerformed(evt);
             }
         });
 
@@ -141,15 +141,15 @@ public class form_absensi extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(357, 357, 357)
-                .addComponent(jButton2)
+                .addComponent(bawal)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(bkiri)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbpage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(bkanan)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addComponent(bakhir)
                 .addContainerGap(347, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -157,20 +157,20 @@ public class form_absensi extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4)
+                    .addComponent(bawal)
+                    .addComponent(bkiri)
+                    .addComponent(bakhir)
+                    .addComponent(bkanan)
                     .addComponent(cbpage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tblabsensiLayout = new javax.swing.GroupLayout(tblabsensi);
+        tblabsensi.setLayout(tblabsensiLayout);
+        tblabsensiLayout.setHorizontalGroup(
+            tblabsensiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(tblabsensiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,11 +178,11 @@ public class form_absensi extends javax.swing.JPanel {
                 .addContainerGap())
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        tblabsensiLayout.setVerticalGroup(
+            tblabsensiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tblabsensiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(tblabsensiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -219,24 +219,24 @@ public class form_absensi extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(255, 204, 51));
-        jButton6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-edit-20.png"))); // NOI18N
-        jButton6.setText("Edit");
-        jButton6.setPreferredSize(new java.awt.Dimension(89, 30));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        bubah.setBackground(new java.awt.Color(255, 204, 51));
+        bubah.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        bubah.setForeground(new java.awt.Color(255, 255, 255));
+        bubah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-edit-20.png"))); // NOI18N
+        bubah.setText("Edit");
+        bubah.setPreferredSize(new java.awt.Dimension(89, 30));
+        bubah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                bubahActionPerformed(evt);
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 51, 51));
-        jButton7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-20.png"))); // NOI18N
-        jButton7.setText("Hapus");
-        jButton7.setPreferredSize(new java.awt.Dimension(89, 30));
+        bhapus.setBackground(new java.awt.Color(255, 51, 51));
+        bhapus.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        bhapus.setForeground(new java.awt.Color(255, 255, 255));
+        bhapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-20.png"))); // NOI18N
+        bhapus.setText("Hapus");
+        bhapus.setPreferredSize(new java.awt.Dimension(89, 30));
 
         txttgl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txttgl.setForeground(new java.awt.Color(51, 51, 51));
@@ -265,9 +265,9 @@ public class form_absensi extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bubah, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bhapus, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -276,8 +276,8 @@ public class form_absensi extends javax.swing.JPanel {
                 .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(bubah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bhapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txttgl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -292,7 +292,7 @@ public class form_absensi extends javax.swing.JPanel {
         view.setLayout(viewLayout);
         viewLayout.setHorizontalGroup(
             viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tblabsensi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         viewLayout.setVerticalGroup(
@@ -300,7 +300,7 @@ public class form_absensi extends javax.swing.JPanel {
             .addGroup(viewLayout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tblabsensi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -311,12 +311,12 @@ public class form_absensi extends javax.swing.JPanel {
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel27.setText("Tambah Data Absensi");
 
-        jButton8.setBackground(new java.awt.Color(25, 61, 142));
-        jButton8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-cross-20.png"))); // NOI18N
-        jButton8.setText("Tutup Form");
-        jButton8.setPreferredSize(new java.awt.Dimension(89, 30));
+        btutup.setBackground(new java.awt.Color(25, 61, 142));
+        btutup.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btutup.setForeground(new java.awt.Color(255, 255, 255));
+        btutup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-cross-20.png"))); // NOI18N
+        btutup.setText("Tutup Form");
+        btutup.setPreferredSize(new java.awt.Dimension(89, 30));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -326,7 +326,7 @@ public class form_absensi extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 748, Short.MAX_VALUE)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btutup, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -334,7 +334,7 @@ public class form_absensi extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btutup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27))
                 .addGap(11, 11, 11))
         );
@@ -347,9 +347,9 @@ public class form_absensi extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Tanggal Absensi");
 
-        textField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        textField1.setForeground(new java.awt.Color(204, 204, 204));
-        textField1.setText("0/0/2026");
+        txttanggal.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txttanggal.setForeground(new java.awt.Color(204, 204, 204));
+        txttanggal.setText("0/0/2026");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Pilih Kelas");
@@ -360,26 +360,26 @@ public class form_absensi extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Status Kehadiran");
 
-        textField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        textField2.setForeground(new java.awt.Color(204, 204, 204));
-        textField2.setText("Ketik Nis/Nama Siswa...");
-        textField2.addActionListener(new java.awt.event.ActionListener() {
+        txtsiswa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtsiswa.setForeground(new java.awt.Color(204, 204, 204));
+        txtsiswa.setText("Ketik Nis/Nama Siswa...");
+        txtsiswa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
+                txtsiswaActionPerformed(evt);
             }
         });
 
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jRadioButton1.setText("Hadir");
+        rbhadir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbhadir.setText("Hadir");
 
-        jRadioButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jRadioButton5.setText("Sakit");
+        rbsakit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbsakit.setText("Sakit");
 
-        jRadioButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jRadioButton6.setText("Izin");
+        rbizin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbizin.setText("Izin");
 
-        jRadioButton7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jRadioButton7.setText("Alpa");
+        rbalpha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbalpha.setText("Alpa");
 
         jButton9.setBackground(new java.awt.Color(255, 204, 51));
         jButton9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -398,11 +398,9 @@ public class form_absensi extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Keterangan");
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField3.setText("Surat Dokter, Izin Keluarga, dll...");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtket.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtket.setForeground(new java.awt.Color(204, 204, 204));
+        txtket.setText("Surat Dokter, Izin Keluarga, dll...");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -414,24 +412,24 @@ public class form_absensi extends javax.swing.JPanel {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(rbhadir)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton5)
+                                .addComponent(rbsakit)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton6)
+                                .addComponent(rbizin)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton7))
+                                .addComponent(rbalpha))
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
-                            .addComponent(textField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtsiswa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE))
+                            .addComponent(txtket, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbpilihk, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txttanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
@@ -453,27 +451,27 @@ public class form_absensi extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbpilihk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtsiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton6)
-                    .addComponent(jRadioButton7))
+                    .addComponent(rbhadir)
+                    .addComponent(rbsakit)
+                    .addComponent(rbizin)
+                    .addComponent(rbalpha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(187, 187, 187)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -515,38 +513,38 @@ public class form_absensi extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txttglActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void bakhirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bakhirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_bakhirActionPerformed
 
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+    private void txtsiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsiswaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
+    }//GEN-LAST:event_txtsiswaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void bubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bubahActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_bubahActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel add;
+    private javax.swing.JButton bakhir;
+    private javax.swing.JButton bawal;
+    private javax.swing.JButton bhapus;
+    private javax.swing.JButton bkanan;
+    private javax.swing.JButton bkiri;
+    private javax.swing.JButton btutup;
+    private javax.swing.JButton bubah;
     private javax.swing.JComboBox<String> cbkelas;
     private javax.swing.JComboBox<String> cbpage;
+    private javax.swing.JComboBox<String> cbpilihk;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -557,23 +555,23 @@ public class form_absensi extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel mainpanel;
+    private javax.swing.JRadioButton rbalpha;
+    private javax.swing.JRadioButton rbhadir;
+    private javax.swing.JRadioButton rbizin;
+    private javax.swing.JRadioButton rbsakit;
     private javax.swing.JTable tabelsiswa;
-    private java.awt.TextField textField1;
-    private java.awt.TextField textField2;
+    private javax.swing.JPanel tblabsensi;
     private javax.swing.JTextField txtcari;
+    private javax.swing.JTextField txtket;
+    private java.awt.TextField txtsiswa;
+    private java.awt.TextField txttanggal;
     private javax.swing.JTextField txttgl;
     private javax.swing.JPanel view;
     // End of variables declaration//GEN-END:variables
