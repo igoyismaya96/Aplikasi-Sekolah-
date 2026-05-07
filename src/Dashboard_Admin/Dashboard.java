@@ -501,32 +501,35 @@ private void showCachedPanel(String key, java.util.function.Supplier<javax.swing
     }//GEN-LAST:event_dakunActionPerformed
 
     private void dNilaiUjianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dNilaiUjianActionPerformed
+        showCachedPanel("nilaiujian", () -> new form_raport1());
         // TODO add your handling code here:
     }//GEN-LAST:event_dNilaiUjianActionPerformed
 
     private void dAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dAbsensiActionPerformed
-        
+        showCachedPanel("absen", () -> new form_absensi());        
     }//GEN-LAST:event_dAbsensiActionPerformed
 
     private void dJadwalPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dJadwalPelajaranActionPerformed
+        showCachedPanel("jadwalpelajaran", () -> new form_japel());
         // TODO add your handling code here:
         
     }//GEN-LAST:event_dJadwalPelajaranActionPerformed
 
     private void dDataKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dDataKelasActionPerformed
+        showCachedPanel("datakelas", () -> new form_kelas());
         // TODO add your handling code here:
       
     }//GEN-LAST:event_dDataKelasActionPerformed
 
     private void dMataPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dMataPelajaranActionPerformed
-        showCachedPanel("mapel", () -> new form_raport1());
+        showCachedPanel("Mata Pelajaran", () -> new form_mapel());
         // TODO add your handling code here:
        
     }//GEN-LAST:event_dMataPelajaranActionPerformed
 
     private void dDataGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dDataGuruActionPerformed
         // TODO add your handling code here:
-        showCachedPanel("guru", () -> new form_guru());
+        showCachedPanel("Data Guru", () -> new form_guru());
     }//GEN-LAST:event_dDataGuruActionPerformed
 
     private void dDataSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dDataSiswaActionPerformed
